@@ -6,7 +6,7 @@ import "./Kennel.css";
 
 const Kennel = () => {
   return (
-      // react fragment
+      // react fragment no name container. No div.
     <>
       <NavBar />
       <ApplicationViews />

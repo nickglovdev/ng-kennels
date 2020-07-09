@@ -1,0 +1,34 @@
+
+    {
+        "animals": [
+            {
+                "id": 1,
+                "name": "Doodles",
+                "breed": "Poodle"
+            },
+            {
+                "id": 2,
+                "name": "Decker",
+                "breed": "German Shepherd"
+            },
+            {
+                "id": 3,
+                "name": "Esme",
+                "breed": "Pitbull"
+            }
+        ],
+        "employees": [
+            {
+                "id": 1,
+                "name": "John"
+            },
+            {
+                "id": 2,
+                "name": "Jack"
+            },
+            {
+                "id": 3,
+                "name": "Jester"
+            }
+        ]
+    }
