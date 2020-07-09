@@ -30,5 +30,33 @@
                 "id": 3,
                 "name": "Jester"
             }
+        ],
+        "locations": [
+            {
+                "id": 1,
+                "name": "South Place"
+            },
+            {
+                "id": 2,
+                "name": "North Place"
+            },
+            {
+                "id": 3,
+                "name": "West Place"
+            }
+        ],
+        "owners": [
+            {
+                "id": 1,
+                "name": "Big John"
+            },
+            {
+                "id": 2,
+                "name": "Little John"
+            },
+            {
+                "id": 3,
+                "name": "Man Named John"
+            }
         ]
     }
