@@ -6,5 +6,10 @@ export default {
   },
   getAllLocations() {
     return fetch(`${remoteURL}/locations`).then(result => result.json())
+  },
+  deleteSingleLocation(id) {
+    return fetch(`${remoteURL}/employees/${id}`, {
+      method: "DELETE"
+    }).then(result => result.json())
   }
 }

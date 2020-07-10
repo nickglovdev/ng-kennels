@@ -16,6 +16,12 @@ const LocationList = () => {
     });
   };
 
+  // const DeleteManager= id => {
+  //   LocationManager.DeleteSingleLocation(id)
+  //     .then(() => EmployeeLocation.getAllLocations()
+  //     .then(setLocations));
+  // };
+
   // got the locations from the API on the component's first render
   useEffect(() => {
     getLocations();
@@ -24,7 +30,11 @@ const LocationList = () => {
   // Finally we use map() to "loop over" the locations array to show a list of location cards
   return (
     <div className="container-cards">
-      {locations.map(location => <LocationCard key={location.id} name={location.name} place={location}/>)}
+      {locations.map(location => <LocationCard key={location.id} 
+                                                name={location.name} 
+                                                location={location}
+                                                // deleteLocation={deleteLocation}
+                                                />)}
     </div>
   );
 };

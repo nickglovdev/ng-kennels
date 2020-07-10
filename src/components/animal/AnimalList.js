@@ -15,16 +15,28 @@ const AnimalList = () => {
       setAnimals(animalsFromAPI)
     });
   };
+  // Using this to delete animals
+  const deleteAnimal = id => {
+    AnimalManager.deleteSingleAnimal(id)
+      .then(() => AnimalManager.getAllAnimals()
+      .then(setAnimals));
+  };
 
   // got the animals from the API on the component's first render
   useEffect(() => {
     getAnimals();
   }, []);
 
-  // Finally we use map() to "loop over" the animals array to show a list of animal cards
+  // Finally we use map() to "loop over" the animals array to show a list of animal cards.
+  // You can also pass functions into it.
   return (
-    <div className="container-cards">
-      {animals.map(animal => <AnimalCard key={animal.id} name={animal.name} pet={animal}/>)}
+    <div className="container-cards"> 
+      {animals.map(animal => <AnimalCard key={animal.id} 
+                                        name={animal.name} 
+                                        animal={animal}
+                                        // Pass function into Animal Card to delete Animal Object then go to animal card for the button
+                                        deleteAnimal={deleteAnimal}/>)}
+                                        
     </div>
   );
 };
