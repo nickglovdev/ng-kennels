@@ -1,0 +1,41 @@
+import React, { useState, useEffect } from 'react';
+//import the components we will need
+import EmployeeCard from './EmployeeCard';
+import EmployeeManager from '../../modules/EmployeeManager';
+
+const EmployeeList = () => {
+  // The initial state is an empty array
+  // employees data setEmployees the function
+  const [employees, setEmployees] = useState([]);
+
+  const getEmployees = () => {
+    // After the data comes back from the API, we
+    //  use the setEmployees function to update state
+    return EmployeeManager.getAllEmployees().then(employeesFromAPI => {
+      setEmployees(employeesFromAPI)
+    });
+  };
+
+  const deleteEmployee= id => {
+    EmployeeManager.deleteSingleEmployee(id)
+      .then(() => EmployeeManager.getAllEmployees()
+      .then(setEmployees));
+  };
+
+  // got the employees from the API on the component's first render
+  useEffect(() => {
+    getEmployees();
+  }, []);
+
+  // Finally we use map() to "loop over" the employees array to show a list of employee cards
+  return (
+    <div className="container-cards">
+      {employees.map(employee => <EmployeeCard key={employee.id} 
+                                                name={employee.name} 
+                                                employee={employee}
+                                                // Pass function into Employee Card to delete Animal Object
+                                                 deleteEmployee={deleteEmployee}/>)} 
+    </div>
+  );
+};
+export default EmployeeList
