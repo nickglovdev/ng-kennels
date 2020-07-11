@@ -31,7 +31,8 @@ const ApplicationViews = () => {
       {/* Colon : means that it is dynamic. the \d+ it means numbers */}
       <Route path="/animals/:animalId(\d+)" render={(props) => {
         // Pass the animalId to the AnimalDetailComponent
-        return <AnimalDetail animalId={parseInt(props.match.params.animalId)} />
+        return <AnimalDetail animalId={parseInt(props.match.params.animalId)}
+        {... props} />
       }} />
 
       {/*
@@ -49,9 +50,8 @@ const ApplicationViews = () => {
        <Route exact path="/locations" render={(props) => {
         return <LocationList />
       }} />
-      {/* Colon : means that it is dynamic. the \d+ it means numbers */}
-      <Route path="/locations/:locationsId(\d+)" render={(props) => {
-        // Pass the animalId to the AnimalDetailComponent
+
+      <Route path="/locations/:locationId(\d+)" render={(props) => {
         return <LocationDetail locationId={parseInt(props.match.params.locationId)} />
       }} />
       <Route path="/Owners" render={(props) => {

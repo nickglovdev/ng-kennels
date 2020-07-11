@@ -16,11 +16,11 @@ const LocationList = () => {
     });
   };
 
-  // const DeleteManager= id => {
-  //   LocationManager.DeleteSingleLocation(id)
-  //     .then(() => EmployeeLocation.getAllLocations()
-  //     .then(setLocations));
-  // };
+  const deleteLocation = id => {
+    LocationManager.deleteSingleLocation(id)
+      .then(() => LocationManager.getAllLocations()
+      .then(setLocations));
+  };
 
   // got the locations from the API on the component's first render
   useEffect(() => {
@@ -33,7 +33,7 @@ const LocationList = () => {
       {locations.map(location => <LocationCard key={location.id} 
                                                 name={location.name} 
                                                 location={location}
-                                                // deleteLocation={deleteLocation}
+                                                deleteLocation={deleteLocation}
                                                 />)}
     </div>
   );

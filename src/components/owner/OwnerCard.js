@@ -10,6 +10,8 @@ const OwnerCard = (props) => {
         <h3>
           Owner: <span className="card-owner">{props.name}</span>
         </h3>
+        
+        <button type="button" onClick={() => props.deleteOwner(props.owner.id)}>Remove</button>
       </div>
     </div>
   );

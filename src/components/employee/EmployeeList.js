@@ -32,7 +32,7 @@ const EmployeeList = () => {
     <div className="container-cards">
       {employees.map(employee => <EmployeeCard key={employee.id} 
                                                 name={employee.name} 
-                                                person={employee}
+                                                employee={employee}
                                                 // Pass function into Employee Card to delete Animal Object
                                                  deleteEmployee={deleteEmployee}/>)} 
     </div>
