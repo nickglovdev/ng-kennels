@@ -29,10 +29,18 @@ const ApplicationViews = () => {
         return <AnimalList />
       }} />
       {/* Colon : means that it is dynamic. the \d+ it means numbers */}
-      <Route path="/animals/:animalId(\d+)" render={(props) => {
-        // Pass the animalId to the AnimalDetailComponent
-        return <AnimalDetail animalId={parseInt(props.match.params.animalId)} />
-      }} />
+      <Route
+        path="/animals/:animalId(\d+)"
+        render={props => {
+          // Pass the animalId to the AnimalDetailComponent
+          return (
+            <AnimalDetail
+              animalId={parseInt(props.match.params.animalId)}
+              {...props}
+            />
+          );
+        }}
+      />
 
       {/*
   This is a new route to handle a URL with the following pattern:
@@ -45,13 +53,14 @@ const ApplicationViews = () => {
       <Route path="/employees" render={(props) => {
         return <EmployeeList />
       }} />
-       {/* Make sure you add the `exact` attribute here */}
-       <Route exact path="/locations" render={(props) => {
+      {/* Make sure you add the `exact` attribute here */}
+      <Route exact path="/locations" render={(props) => {
         return <LocationList />
       }} />
 
       <Route path="/locations/:locationId(\d+)" render={(props) => {
-        return <LocationDetail locationId={parseInt(props.match.params.locationId)} />
+        return <LocationDetail locationId={parseInt(props.match.params.locationId)}
+          {...props} />
       }} />
       <Route path="/Owners" render={(props) => {
         return <OwnerList />
