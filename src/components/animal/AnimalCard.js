@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const AnimalCard = (props) => {
     return (
+        
         <div className="card">
             <div className="card-content">
                 <picture>
@@ -13,7 +14,6 @@ const AnimalCard = (props) => {
                 <h3>
                     Name: <span className="card-petname">{props.name}</span>
                 </h3>
-                <p>Breed: Poodle</p>
                 <p>Breed: {props.animal.breed}</p>
                 {/* delete on animalList page */}
                 <button type="button" onClick={() => props.deleteAnimal(props.animal.id)}>Discharge</button>

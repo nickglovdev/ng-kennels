@@ -14,6 +14,11 @@
       "id": 3,
       "name": "Esme",
       "breed": "Pitbull"
+    },
+    {
+      "name": "Dog named bow",
+      "breed": "Dog",
+      "id": 4
     }
   ],
   "employees": [
