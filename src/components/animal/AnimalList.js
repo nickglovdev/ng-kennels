@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import AnimalCard from './AnimalCard';
 import AnimalManager from '../../modules/AnimalManager';
 
-const AnimalList = () => {
+const AnimalList = (props) => {
   // The initial state is an empty array
   // animals data setAnimals the function
   const [animals, setAnimals] = useState([]);
@@ -19,7 +19,7 @@ const AnimalList = () => {
   const deleteAnimal = id => {
     AnimalManager.deleteSingleAnimal(id)
       .then(() => AnimalManager.getAllAnimals()
-      .then(setAnimals));
+        .then(setAnimals));
   };
 
   // got the animals from the API on the component's first render
@@ -27,17 +27,29 @@ const AnimalList = () => {
     getAnimals();
   }, []);
 
+
   // Finally we use map() to "loop over" the animals array to show a list of animal cards.
   // You can also pass functions into it.
   return (
-    <div className="container-cards"> 
-      {animals.map(animal => <AnimalCard key={animal.id} 
-                                        name={animal.name} 
-                                        animal={animal}
-                                        // Pass function into Animal Card to delete Animal Object then go to animal card for the button
-                                        deleteAnimal={deleteAnimal}/>)}
-                                        
+
+    <div className="container-cards">
+      {/* add this button above your display of animal cards */}
+      <>
+      <section className="section-content">
+        <button type="button"
+          className="btn"
+          onClick={() => { props.history.push("/animals/new") }}>
+          Admit Animal
+        </button>
+      </section>
+      </>
+      {animals.map(animal => <AnimalCard key={animal.id}
+        name={animal.name}
+        animal={animal}
+        // Pass function into Animal Card to delete Animal Object then go to animal card for the button
+        deleteAnimal={deleteAnimal} />)}
     </div>
   );
+
 };
 export default AnimalList
