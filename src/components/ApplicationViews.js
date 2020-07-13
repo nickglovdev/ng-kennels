@@ -13,6 +13,8 @@ import EmployeeForm from './employee/EmployeeForm'
 import OwnerForm from './owner/OwnerForm'
 import LocationForm from './location/LocationForm'
 import Login from './auth/Login'
+import AnimalEditForm from './animal/AnimalEditForm'
+import EmployeeEditForm from "./employee/EmployeeEditForm"
 //only include these once they are built - previous practice exercise
 
 
@@ -50,18 +52,20 @@ const ApplicationViews = () => {
       }} />
       {/* Our shiny new route. */}
       {/* Colon : means that it is dynamic. the \d+ it means numbers */}
-      <Route
-        path="/animals/:animalId(\d+)"
-        render={props => {
-          // Pass the animalId to the AnimalDetailComponent
-          return (
-            <AnimalDetail
-              animalId={parseInt(props.match.params.animalId)}
-              {...props}
-            />
-          );
-        }}
-      />
+      <Route exact path="/animals/:animalId(\d+)" render={props => {
+        if (isAuthenticated()) {
+          return <AnimalDetail animalId={parseInt(props.match.params.animalId)} {...props} />
+        } else {
+          return <Redirect to="/login" />
+        }
+      }} />
+      <Route path="/animals/:animalId(\d+)/edit" render={props => {
+        if (isAuthenticated()) {
+          return <AnimalEditForm {...props} />
+        } else {
+          return <Redirect to="/login" />
+        }
+      }} />
 
       {/*
   This is a new route to handle a URL with the following pattern:
@@ -72,9 +76,10 @@ const ApplicationViews = () => {
   http://localhost:3000/animals/jack
 */}
       {/* updated route: `/animals` */}
-      
-      <Route exact path="/employees" render={(props) => {
-         if (isAuthenticated()) {
+      {/* The true and false statement here will make sure that you have 
+      to be logged in to see the page. */}
+      <Route exact path="/employees" render={props => {
+        if (isAuthenticated()) {
           return <EmployeeList {...props} />
         } else {
           return <Redirect to="/login" />
@@ -82,6 +87,13 @@ const ApplicationViews = () => {
       }} />
       <Route path="/employees/new" render={(props) => {
         return <EmployeeForm {...props} />
+      }} />
+      <Route path="/employees/:employeeId(\d+)/edit" render={props => {
+        if (isAuthenticated()) {
+          return <EmployeeEditForm {...props} />
+        } else {
+          return <Redirect to="/login" />
+        }
       }} />
 
       {/* Locations Routes */}
@@ -92,14 +104,22 @@ const ApplicationViews = () => {
         } else {
           return <Redirect to="/login" />
         }
-        
+
       }} />
       <Route path="/locations/new" render={(props) => {
         return <LocationForm {...props} />
       }} />
-      <Route path="/locations/:locationId(\d+)" render={(props) => {
+      <Route exact path="/locations/:locationId(\d+)" render={(props) => {
         return <LocationDetail locationId={parseInt(props.match.params.locationId)}
           {...props} />
+      }} />
+
+      <Route path="/locations/:locationId(\d+)/edit" render={props => {
+        if (isAuthenticated()) {
+          return <AnimalEditForm {...props} />
+        } else {
+          return <Redirect to="/login" />
+        }
       }} />
 
       {/* Owner Routes */}

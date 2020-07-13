@@ -35,17 +35,19 @@ const AnimalList = (props) => {
     <div className="container-cards">
       {/* add this button above your display of animal cards */}
       <>
-      <section className="section-content">
-        <button type="button"
-          className="btn"
-          onClick={() => { props.history.push("/animals/new") }}>
-          Admit Animal
+        <section className="section-content">
+          <button type="button"
+            className="btn"
+            onClick={() => { props.history.push("/animals/new") }}>
+            Admit Animal
         </button>
-      </section>
+        </section>
       </>
-      {animals.map(animal => <AnimalCard key={animal.id}
-        name={animal.name}
-        animal={animal}
+      {animals.map(animal => <AnimalCard 
+                              key={animal.id}
+                              name={animal.name}
+                              animal={animal}
+                              {...props}
         // Pass function into Animal Card to delete Animal Object then go to animal card for the button
         deleteAnimal={deleteAnimal} />)}
     </div>

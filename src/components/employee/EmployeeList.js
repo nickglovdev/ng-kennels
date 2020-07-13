@@ -43,6 +43,7 @@ const EmployeeList = (props) => {
       {employees.map(employee => <EmployeeCard key={employee.id}
         name={employee.name}
         employee={employee}
+        {...props}
         // Pass function into Employee Card to delete Employee Object
         deleteEmployee={deleteEmployee} />)}
     </div>

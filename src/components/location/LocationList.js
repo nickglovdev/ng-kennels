@@ -43,6 +43,7 @@ const LocationList = (props) => {
         name={location.name}
         location={location}
         deleteLocation={deleteLocation}
+        {...props}
       />)}
     </div>
   );

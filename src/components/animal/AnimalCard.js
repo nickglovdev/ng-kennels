@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const AnimalCard = (props) => {
     return (
-        
+
         <div className="card">
             <div className="card-content">
                 <picture>
@@ -17,6 +17,10 @@ const AnimalCard = (props) => {
                 <p>Breed: {props.animal.breed}</p>
                 {/* delete on animalList page */}
                 <button type="button" onClick={() => props.deleteAnimal(props.animal.id)}>Discharge</button>
+                <button type="button"
+                    onClick={() => props.history.push(`/animals/${props.animal.id}/edit`)}>
+                    Edit
+                </button>
                 <Link to={`/animals/${props.animal.id}`}>
                     <button>Details</button>
                 </Link>
