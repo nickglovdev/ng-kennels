@@ -21,10 +21,6 @@
       "name": "John"
     },
     {
-      "id": 2,
-      "name": "Jack BIll the guy"
-    },
-    {
       "id": 3,
       "name": "Jester"
     },
@@ -59,11 +55,6 @@
     {
       "id": 3,
       "name": "West Place"
-    },
-    {
-      "name": "Jimba",
-      "breed": "",
-      "id": 4
     }
   ]
 }

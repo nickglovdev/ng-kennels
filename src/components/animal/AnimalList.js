@@ -27,31 +27,21 @@ const AnimalList = (props) => {
     getAnimals();
   }, []);
 
-
   // Finally we use map() to "loop over" the animals array to show a list of animal cards.
   // You can also pass functions into it.
   return (
-
     <div className="container-cards">
-      {/* add this button above your display of animal cards */}
-      <>
-        <section className="section-content">
-          <button type="button"
-            className="btn"
-            onClick={() => { props.history.push("/animals/new") }}>
-            Admit Animal
-        </button>
-        </section>
-      </>
-      {animals.map(animal => <AnimalCard 
-                              key={animal.id}
-                              name={animal.name}
-                              animal={animal}
-                              {...props}
-        // Pass function into Animal Card to delete Animal Object then go to animal card for the button
-        deleteAnimal={deleteAnimal} />)}
+      {animals.map(animal => <AnimalCard
+                          key={animal.id}
+                          animal={animal}
+                          deleteAnimal={deleteAnimal}
+                          {...props}
+  
+      />
+      )}
+
+
     </div>
   );
-
 };
 export default AnimalList

@@ -18,7 +18,7 @@ const LocationDetail = props => {
   }, [props.locationId]);
 
   const handleDelete = () => {
-    //invoke the delete function in AnimalManger and re-direct to the animal list.
+    //invoke the delete function in LocationManger and re-direct to the locatioin list.
     setIsLoading(true);
     LocationManager.deleteSingleLocation(props.locationId).then(() =>
       props.history.push("/locations")

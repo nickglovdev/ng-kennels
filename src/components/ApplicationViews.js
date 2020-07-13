@@ -15,6 +15,7 @@ import LocationForm from './location/LocationForm'
 import Login from './auth/Login'
 import AnimalEditForm from './animal/AnimalEditForm'
 import EmployeeEditForm from "./employee/EmployeeEditForm"
+import LocationEditForm from "./location/LocationEditForm"
 //only include these once they are built - previous practice exercise
 
 
@@ -98,25 +99,30 @@ const ApplicationViews = () => {
 
       {/* Locations Routes */}
       {/* Make sure you add the `exact` attribute here */}
-      <Route exact path="/locations" render={(props) => {
+      <Route exact path="/locations" render={props => {
         if (isAuthenticated()) {
           return <LocationList {...props} />
         } else {
           return <Redirect to="/login" />
         }
-
       }} />
+      {/* Our shiny new route. */}
       <Route path="/locations/new" render={(props) => {
         return <LocationForm {...props} />
       }} />
-      <Route exact path="/locations/:locationId(\d+)" render={(props) => {
-        return <LocationDetail locationId={parseInt(props.match.params.locationId)}
-          {...props} />
+      {/* Our shiny new route. */}
+      {/* Colon : means that it is dynamic. the \d+ it means numbers */}
+      <Route exact path="/locations/:locationId(\d+)" render={props => {
+        if (isAuthenticated()) {
+          console.log(props.match.params.locationId)
+          return <LocationDetail locationId={parseInt(props.match.params.locationId)} {...props} />
+        } else {
+          return <Redirect to="/login" />
+        }
       }} />
-
       <Route path="/locations/:locationId(\d+)/edit" render={props => {
         if (isAuthenticated()) {
-          return <AnimalEditForm {...props} />
+          return <LocationEditForm {...props} />
         } else {
           return <Redirect to="/login" />
         }
