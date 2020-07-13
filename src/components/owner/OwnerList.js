@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import OwnerCard from './OwnerCard';
 import OwnerManager from '../../modules/OwnerManager';
 
-const OwnerList = () => {
+const OwnerList = (props) => {
   // The initial state is an empty array
   // owners data setOwners the function
   const [owners, setOwners] = useState([]);
@@ -20,7 +20,7 @@ const OwnerList = () => {
   const deleteOwner = id => {
     OwnerManager.deleteSingleOwner(id)
       .then(() => OwnerManager.getAllOwners()
-      .then(setOwners));
+        .then(setOwners));
   }
 
 
@@ -31,12 +31,22 @@ const OwnerList = () => {
 
   // Finally we use map() to "loop over" the owners array to show a list of owner cards
   return (
+
     <div className="container-cards">
+      <>
+        <section className="section-content">
+          <button type="button"
+            className="btn"
+            onClick={() => { props.history.push("/owners/new") }}>
+            Add Owner
+           </button>
+        </section>
+      </>
       {owners.map(owner => <OwnerCard key={owner.id}
-                                      name={owner.name}
-                                      owner={owner}
-                                      // Passing delete owner
-                                      deleteOwner={deleteOwner}/>)}
+        name={owner.name}
+        owner={owner}
+        // Passing delete owner
+        deleteOwner={deleteOwner} />)}
     </div>
   );
 };

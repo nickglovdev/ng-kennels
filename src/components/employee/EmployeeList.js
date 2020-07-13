@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import EmployeeCard from './EmployeeCard';
 import EmployeeManager from '../../modules/EmployeeManager';
 
-const EmployeeList = () => {
+const EmployeeList = (props) => {
   // The initial state is an empty array
   // employees data setEmployees the function
   const [employees, setEmployees] = useState([]);
@@ -16,10 +16,10 @@ const EmployeeList = () => {
     });
   };
 
-  const deleteEmployee= id => {
+  const deleteEmployee = id => {
     EmployeeManager.deleteSingleEmployee(id)
       .then(() => EmployeeManager.getAllEmployees()
-      .then(setEmployees));
+        .then(setEmployees));
   };
 
   // got the employees from the API on the component's first render
@@ -30,11 +30,21 @@ const EmployeeList = () => {
   // Finally we use map() to "loop over" the employees array to show a list of employee cards
   return (
     <div className="container-cards">
-      {employees.map(employee => <EmployeeCard key={employee.id} 
-                                                name={employee.name} 
-                                                employee={employee}
-                                                // Pass function into Employee Card to delete Animal Object
-                                                 deleteEmployee={deleteEmployee}/>)} 
+      {/* add this button above your display of employee cards */}
+      <>
+      <section className="section-content">
+        <button type="button"
+          className="btn"
+          onClick={() => { props.history.push("/employees/new") }}>
+          Hire Employee
+        </button>
+      </section>
+      </>
+      {employees.map(employee => <EmployeeCard key={employee.id}
+        name={employee.name}
+        employee={employee}
+        // Pass function into Employee Card to delete Employee Object
+        deleteEmployee={deleteEmployee} />)}
     </div>
   );
 };

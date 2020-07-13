@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import LocationCard from './LocationCard';
 import LocationManager from '../../modules/LocationManager';
 
-const LocationList = () => {
+const LocationList = (props) => {
   // The initial state is an empty array
   // locations data setLocations the function
   const [locations, setLocations] = useState([]);
@@ -19,7 +19,7 @@ const LocationList = () => {
   const deleteLocation = id => {
     LocationManager.deleteSingleLocation(id)
       .then(() => LocationManager.getAllLocations()
-      .then(setLocations));
+        .then(setLocations));
   };
 
   // got the locations from the API on the component's first render
@@ -30,11 +30,20 @@ const LocationList = () => {
   // Finally we use map() to "loop over" the locations array to show a list of location cards
   return (
     <div className="container-cards">
-      {locations.map(location => <LocationCard key={location.id} 
-                                                name={location.name} 
-                                                location={location}
-                                                deleteLocation={deleteLocation}
-                                                />)}
+      <>
+        <section className="section-content">
+          <button type="button"
+            className="btn"
+            onClick={() => { props.history.push("/locations/new") }}>
+            Add New Location
+          </button>
+        </section>
+      </>
+      {locations.map(location => <LocationCard key={location.id}
+        name={location.name}
+        location={location}
+        deleteLocation={deleteLocation}
+      />)}
     </div>
   );
 };
