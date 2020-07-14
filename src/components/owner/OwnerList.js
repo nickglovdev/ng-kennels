@@ -46,7 +46,9 @@ const OwnerList = (props) => {
         name={owner.name}
         owner={owner}
         // Passing delete owner
-        deleteOwner={deleteOwner} />)}
+        deleteOwner={deleteOwner}
+        {...props}
+        />)}
     </div>
   );
 };

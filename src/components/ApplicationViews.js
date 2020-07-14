@@ -16,6 +16,7 @@ import Login from './auth/Login'
 import AnimalEditForm from './animal/AnimalEditForm'
 import EmployeeEditForm from "./employee/EmployeeEditForm"
 import LocationEditForm from "./location/LocationEditForm"
+import OwnerEditForm from "./owner/OwnerEditForm"
 //only include these once they are built - previous practice exercise
 
 
@@ -114,7 +115,6 @@ const ApplicationViews = () => {
       {/* Colon : means that it is dynamic. the \d+ it means numbers */}
       <Route exact path="/locations/:locationId(\d+)" render={props => {
         if (isAuthenticated()) {
-          console.log(props.match.params.locationId)
           return <LocationDetail locationId={parseInt(props.match.params.locationId)} {...props} />
         } else {
           return <Redirect to="/login" />
@@ -138,6 +138,13 @@ const ApplicationViews = () => {
       }} />
       <Route path="/owners/new" render={(props) => {
         return <OwnerForm {...props} />
+      }} />
+      <Route path="/owners/:ownerId(\d+)/edit" render={props => {
+        if (isAuthenticated()) {
+          return <OwnerEditForm {...props} />
+        } else {
+          return <Redirect to="/login" />
+        }
       }} />
     </React.Fragment>
   );

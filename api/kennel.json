@@ -6,13 +6,14 @@
       "breed": "Poodle"
     },
     {
-      "id": 2,
-      "name": "BIlly"
+      "id": 3,
+      "name": "Esmem",
+      "breed": "Pitbull"
     },
     {
-      "id": 3,
-      "name": "Esme",
-      "breed": "Pitbull"
+      "name": "Fill in",
+      "breed": "Dog",
+      "id": 4
     }
   ],
   "employees": [
@@ -32,15 +33,20 @@
   "locations": [
     {
       "id": 1,
-      "name": "South Place"
+      "name": "Big John West"
     },
     {
       "id": 2,
-      "name": "North Place"
+      "name": "Big john"
     },
     {
       "id": 3,
-      "name": "West Place"
+      "name": "New Place"
+    },
+    {
+      "name": "Johns Place",
+      "breed": "",
+      "id": 4
     }
   ],
   "owners": [
@@ -50,7 +56,7 @@
     },
     {
       "id": 2,
-      "name": "Little John"
+      "name": "Little Johnn"
     },
     {
       "id": 3,

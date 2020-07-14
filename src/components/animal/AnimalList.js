@@ -31,12 +31,22 @@ const AnimalList = (props) => {
   // You can also pass functions into it.
   return (
     <div className="container-cards">
+      {/* //add this button above your display of animal cards */}
+      <>
+        <section className="section-content">
+          <button type="button"
+            className="btn"
+            onClick={() => { props.history.push("/animals/new") }}>
+            Admit Animal
+          </button>
+        </section>
+      </>
       {animals.map(animal => <AnimalCard
-                          key={animal.id}
-                          animal={animal}
-                          deleteAnimal={deleteAnimal}
-                          {...props}
-  
+        key={animal.id}
+        animal={animal}
+        deleteAnimal={deleteAnimal}
+        {...props}
+
       />
       )}
 

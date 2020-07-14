@@ -1,35 +1,35 @@
 import React, { useState, useEffect } from "react"
-import LocationManager from "../../modules/LocationManager"
+import OwnerManager from "../../modules/OwnerManager"
+import "./OwnerForm.css"
 
-const LocationEditForm = props => {
-  const [location, setLocation] = useState({ name: ""});
+const OwnerEditForm = props => {
+  const [owner, setOwner] = useState({ name: ""});
   const [isLoading, setIsLoading] = useState(false);
 
   const handleFieldChange = evt => {
-    const stateToChange = { ...location };
+    const stateToChange = { ...owner };
     stateToChange[evt.target.id] = evt.target.value;
-    setLocation(stateToChange);
+    setOwner(stateToChange);
   };
 
-  const updateExistingLocation = evt => {
+  const updateExistingOwner = evt => {
     evt.preventDefault()
     setIsLoading(true);
 
     // This is an edit, so we need the id
-    const editedLocation = {
-      id: props.match.params.locationId,
-      name: location.name,
-      breed: location.breed
+    const editedOwner = {
+      id: props.match.params.ownerId,
+      name: owner.name
     };
 
-    LocationManager.updateLocation(editedLocation)
-      .then(() => props.history.push("/locations"))
+    OwnerManager.updateOwner(editedOwner)
+      .then(() => props.history.push("/owners"))
   }
 
   useEffect(() => {
-    LocationManager.getLocation(props.match.params.locationId)
-      .then(location => {
-        setLocation(location);
+    OwnerManager.getOwner(props.match.params.ownerId)
+      .then(owner => {
+        setOwner(owner);
         setIsLoading(false);
       });
   }, []);
@@ -45,14 +45,14 @@ const LocationEditForm = props => {
               className="form-control"
               onChange={handleFieldChange}
               id="name"
-              value={location.name}
+              value={owner.name}
             />
-            <label htmlFor="name">Location name</label>
+            <label htmlFor="name">Owner name</label>
           </div>
           <div className="alignRight">
             <button
               type="button" disabled={isLoading}
-              onClick={updateExistingLocation}
+              onClick={updateExistingOwner}
               className="btn btn-primary"
             >Submit</button>
           </div>
@@ -62,4 +62,4 @@ const LocationEditForm = props => {
   );
 }
 
-export default LocationEditForm
+export default OwnerEditForm
