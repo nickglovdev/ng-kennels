@@ -17,6 +17,7 @@ import AnimalEditForm from './animal/AnimalEditForm'
 import EmployeeEditForm from "./employee/EmployeeEditForm"
 import LocationEditForm from "./location/LocationEditForm"
 import OwnerEditForm from "./owner/OwnerEditForm"
+import EmployeeWithAnimals from "./employee/EmployeeWithAnimal"
 //only include these once they are built - previous practice exercise
 
 
@@ -96,6 +97,9 @@ const ApplicationViews = () => {
         } else {
           return <Redirect to="/login" />
         }
+      }} />
+      <Route path="/employees/:employeeId(\d+)/details" render={(props) => {
+        return <EmployeeWithAnimals {...props} />
       }} />
 
       {/* Locations Routes */}

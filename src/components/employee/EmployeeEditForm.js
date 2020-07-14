@@ -28,7 +28,7 @@ const EmployeeEditForm = props => {
     }
 
     useEffect(() => {
-        EmployeeManager.get(props.match.params.employeeId)
+        EmployeeManager.getEmployee(props.match.params.employeeId)
           .then(employee => {
             setEmployee(employee);
             setIsLoading(false);

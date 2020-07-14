@@ -29,5 +29,12 @@ export default {
       },
       body: JSON.stringify(editedEmployee)
     }).then(data => data.json());
-  }
+  },
+  getAll() {
+    return fetch(`${remoteURL}/employees/`).then(result => result.json())
+},
+getWithAnimals(id) {
+    return fetch(`${remoteURL}/employees/${id}?_embed=animals`)
+            .then(result => result.json())
+}
 }

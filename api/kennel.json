@@ -1,33 +1,36 @@
 {
   "animals": [
     {
-      "id": 1,
-      "name": "Doodles",
-      "breed": "Poodle"
-    },
-    {
       "id": 3,
-      "name": "Esmem",
-      "breed": "Pitbull"
+      "name": "Esme",
+      "breed": "Pitbull",
+      "employeeId": "2"
     },
     {
-      "name": "Fill in",
-      "breed": "Dog",
-      "id": 4
+      "name": "Jack",
+      "breed": "Big cat",
+      "id": 4,
+      "employeeId": 1
+    },
+    {
+      "name": "Angus",
+      "breed": "Gerbil",
+      "id": 5,
+      "employeeId": 2
     }
   ],
   "employees": [
     {
       "id": 1,
-      "name": "John"
+      "name": "Jessica Younkers"
+    },
+    {
+      "id": 2,
+      "name": "Jordan Nelson"
     },
     {
       "id": 3,
-      "name": "Jester"
-    },
-    {
-      "name": "Bill",
-      "id": 4
+      "name": "Zoe LeBlanc"
     }
   ],
   "locations": [
