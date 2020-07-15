@@ -21,8 +21,11 @@ import EmployeeWithAnimals from "./employee/EmployeeWithAnimal"
 //only include these once they are built - previous practice exercise
 
 
-const ApplicationViews = () => {
-  const isAuthenticated = () => sessionStorage.getItem("credentials") !== null; // for login
+const ApplicationViews = (props) => {
+  const hasUser = props.hasUser;
+  const setUser = props.setUser; // checks to see if user is logged in
+
+  // const isAuthenticated = () => sessionStorage.getItem("credentials") !== null;  for login
   return (
     // Wrap everything in fragment without an extra div
     <React.Fragment>
@@ -36,14 +39,18 @@ const ApplicationViews = () => {
         }}
       />
       {/* Login route */}
-      <Route path="/login" component={Login} />
+      {/* //pass the `setUser` function to Login component. */}
+      <Route path="/login" render={props => {
+        return <Login setUser={setUser} {...props} />
+      }} />
 
       {/* Animal Routes */}
 
       {/* Make sure you add the `exact` attribute here */}
       {/* for the password looking for a true false value */}
       <Route exact path="/animals" render={props => {
-        if (isAuthenticated()) {
+        // {replace with hasUser}
+        if (hasUser) {
           return <AnimalList {...props} />
         } else {
           return <Redirect to="/login" />
@@ -56,14 +63,14 @@ const ApplicationViews = () => {
       {/* Our shiny new route. */}
       {/* Colon : means that it is dynamic. the \d+ it means numbers */}
       <Route exact path="/animals/:animalId(\d+)" render={props => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <AnimalDetail animalId={parseInt(props.match.params.animalId)} {...props} />
         } else {
           return <Redirect to="/login" />
         }
       }} />
       <Route path="/animals/:animalId(\d+)/edit" render={props => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <AnimalEditForm {...props} />
         } else {
           return <Redirect to="/login" />
@@ -82,7 +89,7 @@ const ApplicationViews = () => {
       {/* The true and false statement here will make sure that you have 
       to be logged in to see the page. */}
       <Route exact path="/employees" render={props => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <EmployeeList {...props} />
         } else {
           return <Redirect to="/login" />
@@ -92,7 +99,7 @@ const ApplicationViews = () => {
         return <EmployeeForm {...props} />
       }} />
       <Route path="/employees/:employeeId(\d+)/edit" render={props => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <EmployeeEditForm {...props} />
         } else {
           return <Redirect to="/login" />
@@ -105,7 +112,7 @@ const ApplicationViews = () => {
       {/* Locations Routes */}
       {/* Make sure you add the `exact` attribute here */}
       <Route exact path="/locations" render={props => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <LocationList {...props} />
         } else {
           return <Redirect to="/login" />
@@ -118,14 +125,14 @@ const ApplicationViews = () => {
       {/* Our shiny new route. */}
       {/* Colon : means that it is dynamic. the \d+ it means numbers */}
       <Route exact path="/locations/:locationId(\d+)" render={props => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <LocationDetail locationId={parseInt(props.match.params.locationId)} {...props} />
         } else {
           return <Redirect to="/login" />
         }
       }} />
       <Route path="/locations/:locationId(\d+)/edit" render={props => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <LocationEditForm {...props} />
         } else {
           return <Redirect to="/login" />
@@ -134,7 +141,7 @@ const ApplicationViews = () => {
 
       {/* Owner Routes */}
       <Route exact path="/owners" render={(props) => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <OwnerList {...props} />
         } else {
           return <Redirect to="/login" />
@@ -144,7 +151,7 @@ const ApplicationViews = () => {
         return <OwnerForm {...props} />
       }} />
       <Route path="/owners/:ownerId(\d+)/edit" render={props => {
-        if (isAuthenticated()) {
+        if (hasUser) {
           return <OwnerEditForm {...props} />
         } else {
           return <Redirect to="/login" />

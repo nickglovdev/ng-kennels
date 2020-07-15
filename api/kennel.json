@@ -4,7 +4,7 @@
       "id": 3,
       "name": "Esme",
       "breed": "Pitbull",
-      "employeeId": "2"
+      "employeeId": 2
     },
     {
       "name": "Jack",
@@ -16,6 +16,12 @@
       "name": "Angus",
       "breed": "Gerbil",
       "id": 5,
+      "employeeId": 2
+    },
+    {
+      "id": 6,
+      "name": "David Boye",
+      "breed": "Dog",
       "employeeId": 2
     }
   ],
@@ -35,14 +41,6 @@
   ],
   "locations": [
     {
-      "id": 1,
-      "name": "Big John West"
-    },
-    {
-      "id": 2,
-      "name": "Big john"
-    },
-    {
       "id": 3,
       "name": "New Place"
     },
@@ -50,6 +48,11 @@
       "name": "Johns Place",
       "breed": "",
       "id": 4
+    },
+    {
+      "name": "My House",
+      "breed": "",
+      "id": 5
     }
   ],
   "owners": [
